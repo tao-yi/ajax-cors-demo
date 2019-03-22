@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      fetch("http://localhost:3000/product", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          // MyTestHeader: "value",
+          "X-Custom-Header": "value1",
+          // 在这里设置Cookie值是没用的
+          Cookie: "myCookie=myValue"
+        },
+        body: JSON.stringify({
+          msg: "my msg"
+        }),
+        credentials: "include"
+      })
+        .then(x => {
+          x.headers.forEach(x => console.log(x));
+          // 这里的header中也得不到'Set-Cookie'
+          return x.json();
+        })
+        .then(json => {
+          document.getElementById("root").innerHTML = JSON.stringify(json);
+        });
+    </script>
+  </body>
+</html>
