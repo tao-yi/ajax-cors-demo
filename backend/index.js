@@ -10,7 +10,7 @@ app.use((req, res, next) => {
   console.log("Request Received ===============================");
 
   // 开启跨域访问，前端页面fetch必须同时开启 credentials: true 选项
-  res.setHeader("Access-Control-Allow-Origin", req.header("Origin"));
+  res.setHeader("Access-Control-Allow-Origin", req.header("Origin") || "*");
   res.setHeader("Access-Control-Allow-Credentials", true);
 
   // 开启跨域接收post请求，会导致浏览器发送一个preflight option请求
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/product", (req, res, next) => {
-  console.log("Origin: " + req.header("O rigin"));
+  console.log("Origin: " + req.header("Origin"));
   console.log("Referer: " + req.header("Referer"));
   console.log("User-Agent: " + req.header("User-Agent"));
   console.log("Content-Type: " + req.header("Content-Type"));
