@@ -9,18 +9,19 @@
   <body>
     <div id="root"></div>
     <script>
-      fetch("http://localhost:3000/product", {
+      fetch("https://localhost:3000/product", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
           // MyTestHeader: "value",
-          "X-Custom-Header": "value1",
+          "X-Custom-Header": "Fetch",
           // 在这里设置Cookie值是没用的
           Cookie: "myCookie=myValue"
         },
         body: JSON.stringify({
           msg: "my msg"
         }),
+        // mode: "cors",
         credentials: "include"
       })
         .then(x => {
